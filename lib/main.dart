@@ -21,35 +21,35 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Awesome App"),
       ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          width: 100,
-          height: 100,
-          child: Text(
-            "I am a box",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+      body: Container(
+        color: Colors.teal,
+        width: 500,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(8),
+              width: 100,
+              height: 100,
+              color: Colors.red,
+              alignment: Alignment.center,
             ),
-          ),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(10),
-            gradient: LinearGradient(colors: [
-              Colors.blue,
-              Colors.green,
-            ]),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 10,
-              ),
-            ],
-          ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              width: 100,
+              height: 100,
+              color: Colors.yellow,
+              alignment: Alignment.center,
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              width: 100,
+              height: 100,
+              color: Colors.green,
+              alignment: Alignment.center,
+            ),
+          ],
         ),
       ),
     );
@@ -59,3 +59,8 @@ class Homepage extends StatelessWidget {
 // stateless widget is something that is not suppose to change.
 //container is a type of box
 //it is a shade which is made of combition of two or more colors.
+// main axis of row is horizontal axis and cross axis is vertical axis
+// column main axis is vertical axis and cross axis is horizontal axis.
+
+//mainAxisAlignment: MainAxisAlignment.spaceBetween is used to give space between container.
+//mainAxisAlignment: MainAxisAlignment.spaceevenly is used to give equal space.
