@@ -32,3 +32,5 @@ class MyDrawer extends StatelessWidget {
     );
   }
 }
+
+//A card is a sheet of Material used to represent some related information, for example an album, a geographical location, a meal, contact details, etc.
