@@ -23,14 +23,13 @@ class Homepage extends StatelessWidget {
       ),
       body: Container(
         color: Colors.teal,
-        width: 500,
-        child: Column(
+        height: 100,
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(8),
-              width: 100,
               height: 100,
               color: Colors.red,
               alignment: Alignment.center,
