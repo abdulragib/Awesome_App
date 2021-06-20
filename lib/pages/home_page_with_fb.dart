@@ -4,31 +4,19 @@ import 'package:flutter/material.dart';
 import '../widgets/drawer.dart';
 import 'package:http/http.dart' as http;
 import "dart:convert";
+import 'dart:core';
 
-class Homepage extends StatefulWidget {
-  static const String routeName = "/home";
-  @override
-  _HomepageState createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
+class HomepageFB extends StatelessWidget {
+  static const String routeName = "/homefb";
   // var myText = "Change my name";
   // TextEditingController _nameController =
   //     TextEditingController(); // the value of the field
 
-  var url = "https://jsonplaceholder.typicode.com/photos";
-  var data;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  fetchData() async {
+  Future fetchData() async {
+    var url = "https://jsonplaceholder.typicode.com/photos";
     var res = await http.get(Uri.parse(url));
-    data = jsonDecode(res.body);
-    setState(() {});
+    var data = jsonDecode(res.body);
+    return data;
   }
 
   @override
@@ -47,19 +35,40 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      body: data != null
-          ? ListView.builder(
-              itemBuilder: (context, index) {
-                return ListTile(
-                    title: Text(data[index]['title']),
-                    subtitle: Text("ID: ${data[index]["id"]}"),
-                    leading: Image.network(data[index]["url"]));
-              },
-              itemCount: data.length,
-            )
-          : Center(
-              child: CircularProgressIndicator(),
-            ),
+      body: FutureBuilder(
+        future: fetchData(),
+        builder: (context, AsyncSnapshot snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return Center(
+                child: Text("Fetch something"),
+              );
+
+            case ConnectionState.active:
+            case ConnectionState.waiting:
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+
+            case ConnectionState.done:
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text("Some Error occured"),
+                );
+              }
+
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return ListTile(
+                      title: Text(snapshot.data[index]['title']),
+                      subtitle: Text("ID: ${snapshot.data[index]["id"]}"),
+                      leading: Image.network(snapshot.data[index]["url"]));
+                },
+                itemCount: snapshot.data.length,
+              );
+          }
+        },
+      ),
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
