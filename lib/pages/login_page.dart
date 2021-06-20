@@ -1,9 +1,9 @@
-import 'package:demo_app/pages/home_page.dart';
 import 'package:demo_app/utils/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'home_page_with_fb.dart';
+import 'home_page_with_sb.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = "/login";
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                               // );
 
                               Navigator.pushReplacementNamed(
-                                  context, HomepageFB.routeName);
+                                  context, HomepageSB.routeName);
                             },
                             child: Text("Sign In"),
                             style: ElevatedButton.styleFrom(

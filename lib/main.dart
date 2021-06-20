@@ -1,5 +1,5 @@
 import 'package:demo_app/pages/home_page.dart';
-import 'package:demo_app/pages/home_page_with_fb.dart';
+import 'package:demo_app/pages/home_page_with_sb.dart';
 import 'package:demo_app/pages/login_page.dart';
 import 'package:demo_app/utils/constants.dart';
 import 'package:flutter/widgets.dart';
@@ -23,14 +23,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Constants.prefs!.getBool("loggedIn") == true
-            ? HomepageFB()
+            ? HomepageSB()
             : LoginPage(),
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
         routes: {
           LoginPage.routeName: (context) => LoginPage(),
-          HomepageFB.routeName: (context) => HomepageFB(),
+          Homepage.routeName: (context) => Homepage(),
         });
   }
 }
