@@ -1,11 +1,15 @@
 import 'package:demo_app/pages/home_page.dart';
 import 'package:demo_app/pages/login_page.dart';
+import 'package:demo_app/utils/constants.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+Future main() async {
   //widgetApp //Material app //cupertionApp
+  WidgetsFlutterBinding.ensureInitialized();
+  Constants.prefs = await SharedPreferences.getInstance();
   runApp(
     MyApp(),
   );
@@ -17,7 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: Constants.prefs!.getBool("loggedIn") == true
+            ? Homepage()
+            : LoginPage(),
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
@@ -45,3 +51,5 @@ class MyApp extends StatelessWidget {
 //state is just a information about your UI state of your app. it needs when you change something in your widget tree during runtime.
 
 //setState is a function which allow you to change the state of your app during runTime.
+
+//WidgetsFlutterBinding.ensureInitialized(); make sure that everything is initialized.

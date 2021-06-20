@@ -1,4 +1,5 @@
 import 'package:demo_app/pages/home_page.dart';
+import 'package:demo_app/utils/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           ElevatedButton(
                             onPressed: () {
+                              Constants.prefs!.setBool("loggedIn", true);
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(
@@ -75,7 +77,8 @@ class _LoginPageState extends State<LoginPage> {
                               //   ),
                               // );
 
-                              Navigator.pushNamed(context, Homepage.routeName);
+                              Navigator.pushReplacementNamed(
+                                  context, Homepage.routeName);
                             },
                             child: Text("Sign In"),
                             style: ElevatedButton.styleFrom(
