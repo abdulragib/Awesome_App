@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           LoginPage.routeName: (context) => LoginPage(),
-          Homepage.routeName: (context) => Homepage(),
+          HomepageSB.routeName: (context) => HomepageSB(),
         });
   }
 }
@@ -54,3 +54,7 @@ class MyApp extends StatelessWidget {
 //setState is a function which allow you to change the state of your app during runTime.
 
 //WidgetsFlutterBinding.ensureInitialized(); make sure that everything is initialized.
+
+// If you're running an application and need to access the binary messenger before runApp() has been called (for example, during plugin initialization),
+//then you need to explicitly call the WidgetsFlutterBinding.ensureInitialized() first.
+//just put this row to the top of the main function:
